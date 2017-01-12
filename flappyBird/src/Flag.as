@@ -12,7 +12,7 @@ package
 		public function Flag() 
 		{
 			this.graphics.beginFill(0xffff0000);
-			this.graphics.drawRect( 15, 0, 1, 110);
+			this.graphics.drawRect( 0, 0, 1, 110);
 			this.graphics.endFill();
 		}
 		
