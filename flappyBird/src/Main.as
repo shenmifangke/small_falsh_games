@@ -46,7 +46,7 @@ package
 		private var StartButtonPic:Class;
 		public var startButtonPic:Bitmap = new StartButtonPic() as Bitmap;
 		
-		[Embed(source="GameOverPic.jpg")]
+		[Embed(source="GameOverPic.png")]
 		private var GameOverPic:Class;
 		public var gameOverPic:Bitmap = new GameOverPic() as Bitmap;
 		public var gameOverBox:Sprite = new Sprite();
@@ -102,14 +102,14 @@ package
 			
 			scoreText.embedFonts = true;
 			scoreText.autoSize = TextFieldAutoSize.LEFT;
-			scoreText.defaultTextFormat = new TextFormat("Press_Start_2P", 25, 0xaaaaff);
+			scoreText.defaultTextFormat = new TextFormat("Press_Start_2P", 15, 0xb0fcfb);
 			scoreText.text = score.toString();
 			scoreText.selectable = false;
 			
 			highestScoreText.embedFonts = true;
 			highestScoreText.autoSize = TextFieldAutoSize.LEFT;
-			highestScoreText.defaultTextFormat = new TextFormat("Press_Start_2P", 50, 0xaaaaff);
-			highestScoreText.text = highestScore.toString();
+			highestScoreText.defaultTextFormat = new TextFormat("Press_Start_2P", 25, 0xb0fcfb);
+			highestScoreText.text = "BEST:"+highestScore.toString();
 			highestScoreText.selectable = false;
 			
 			addChild(scoreText);
@@ -117,7 +117,7 @@ package
 			
 			scoreText.visible = false;
 			highestScoreText.visible = false;
-			highestScoreText.x = 160;
+			highestScoreText.x = 160 - highestScoreText.width/2;
 			highestScoreText.y = 330;
 			gameOverBox.addChild(gameOverPic);
 			addChild(gameOverBox);
@@ -129,9 +129,9 @@ package
 				{
 					myGIFPlayer.play();
 					score = 0;
-					scoreText.text = score.toString();
+					scoreText.text = "SCORE:"+score.toString();
 					scoreText.x = 100;
-					scoreText.y = 100;
+					scoreText.y = 25;
 					scoreText.visible = true;
 					highestScoreText.visible = false;
 					gameOverBox.visible = false;
@@ -206,7 +206,8 @@ package
 						{
 							score++;
 							pipeSprite.removeChild(pipeSprite.getChildAt(i));
-							scoreText.text = score.toString();
+							scoreText.text = "SCORE:" + score.toString();
+							scoreText.x = 160 - scoreText.width/2;
 						}
 					}
 				}
@@ -215,7 +216,7 @@ package
 				for (var j:int = pipeSprite.numChildren - 1; j >= 0; j--)
 				{
 					
-					if (pipeSprite.getChildAt(j).x < -pipeSprite.x)
+					if (pipeSprite.getChildAt(j).x < -pipeSprite.x - 20)
 					{
 						pipeSprite.removeChild(pipeSprite.getChildAt(j));
 					}
@@ -265,7 +266,7 @@ package
 			{
 				pipeSprite.removeChild(pipeSprite.getChildAt(0));
 			}
-			myGIFPlayer.stop();
+			myGIFPlayer.stop(); 
 			gameOverBox.visible = true;
 			scoreText.visible = true;
 			highestScoreText.visible = true;
@@ -275,11 +276,12 @@ package
 				highestScore = score;
 				//trace(score);
 				//trace("ok");
-				highestScoreText.text = highestScore.toString();
+				highestScoreText.x = 160 - highestScoreText.width/2;
+				highestScoreText.text = "BEST:"+highestScore.toString();
 			}
-			
+			addChild(startButton);//前置
 			addChild(scoreText);
-			scoreText.x = 160;
+			scoreText.x = 160 - scoreText.width/2;
 			scoreText.y = 300;
 			//trace("移除完毕还有"+pipeSprite.numChildren);
 		}
