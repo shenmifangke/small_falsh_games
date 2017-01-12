@@ -23,12 +23,12 @@ package
 			//110是中间间隔
 			if (size == 0)
 			{ //往下的
-				pipeHeight = Math.floor(Math.random() * 230);
+				pipeHeight = Math.floor(Math.random() * 250+30);
 				pipeBody.height = pipeHeight;
 			}
 			else
 			{
-				pipeHeight = 400 - 110 - size;
+				pipeHeight = 400 - 120 - size;
 				pipeBody.height = pipeHeight;
 			}
 		
